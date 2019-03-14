@@ -24,7 +24,8 @@ public class windowAdmin extends javax.swing.JFrame{
     ventanaVisible = 2 /Usuarios
     ventanaVisible = 3 /Informes
     */
-    private int espacioUsers = 70;
+    private int espacioUsers = 50;
+    private int espacioProduct = 50;
     private FormUser formularioUser;
     private int ventanaUser = 0;
     private User usuario;
@@ -39,13 +40,18 @@ public class windowAdmin extends javax.swing.JFrame{
         PanelProductos.setVisible(false);
         PanelInformes.setVisible(false);
         buttonMain.setBackground(new Color(255,255,255));
-        buttonMain.setForeground(new Color(0,87,146));
+        buttonMain.setForeground(new Color(39,48,54));
         
   
         ContainerUsers.add(TitlesUsers);
-        TitlesUsers.setBounds(0, 0, 735, 70);
+        TitlesUsers.setBounds(0, 0, 735, 50);
         ContainerUsers.setPreferredSize(new Dimension(735,espacioUsers));
         ScrollUsers.setViewportView(ContainerUsers);
+        
+        ContainerProduct.add(TitleProduct);
+        TitleProduct.setBounds(0, 0, 735, 50);
+        ContainerProduct.setPreferredSize(new Dimension(735,espacioProduct));
+        ScrollProduct.setViewportView(ContainerProduct);
         
         usuario = new User("Santiago", "Zuluaga", "Administrador", "C.C", 1144105479, "Admin");
         
@@ -73,6 +79,24 @@ public class windowAdmin extends javax.swing.JFrame{
         buttonProducts = new javax.swing.JLabel();
         buttonReport = new javax.swing.JLabel();
         buttonMain = new javax.swing.JLabel();
+        PanelProductos = new javax.swing.JPanel();
+        newProduct = new javax.swing.JLabel();
+        TitleProduct = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        ScrollProduct = new javax.swing.JScrollPane();
+        ContainerProduct = new javax.swing.JPanel();
+        PanelUsuarios = new javax.swing.JPanel();
+        newUser = new javax.swing.JLabel();
+        TitlesUsers = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        ScrollUsers = new javax.swing.JScrollPane();
+        ContainerUsers = new javax.swing.JPanel();
         PanelMain = new javax.swing.JPanel();
         ImageUser = new javax.swing.JLabel();
         User = new javax.swing.JPanel();
@@ -83,16 +107,6 @@ public class windowAdmin extends javax.swing.JFrame{
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        PanelUsuarios = new javax.swing.JPanel();
-        newUser = new javax.swing.JLabel();
-        TitlesUsers = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        ScrollUsers = new javax.swing.JScrollPane();
-        ContainerUsers = new javax.swing.JPanel();
-        PanelProductos = new javax.swing.JPanel();
         PanelInformes = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,7 +115,7 @@ public class windowAdmin extends javax.swing.JFrame{
         Container.setBackground(new java.awt.Color(255, 255, 255));
         Container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        PanelOptions.setBackground(new java.awt.Color(0, 87, 146));
+        PanelOptions.setBackground(new java.awt.Color(39, 48, 54));
         PanelOptions.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Title.setBackground(new java.awt.Color(0, 87, 146));
@@ -111,7 +125,7 @@ public class windowAdmin extends javax.swing.JFrame{
         Title.setText("SiparSoft");
         PanelOptions.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 180, -1));
 
-        buttonUsers.setBackground(new java.awt.Color(0, 87, 146));
+        buttonUsers.setBackground(new java.awt.Color(39, 48, 54));
         buttonUsers.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         buttonUsers.setForeground(new java.awt.Color(255, 255, 255));
         buttonUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -130,7 +144,7 @@ public class windowAdmin extends javax.swing.JFrame{
         });
         PanelOptions.add(buttonUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 300, 70));
 
-        buttonProducts.setBackground(new java.awt.Color(0, 87, 146));
+        buttonProducts.setBackground(new java.awt.Color(39, 48, 54));
         buttonProducts.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         buttonProducts.setForeground(new java.awt.Color(255, 255, 255));
         buttonProducts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -149,7 +163,7 @@ public class windowAdmin extends javax.swing.JFrame{
         });
         PanelOptions.add(buttonProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 300, 70));
 
-        buttonReport.setBackground(new java.awt.Color(0, 87, 146));
+        buttonReport.setBackground(new java.awt.Color(39, 48, 54));
         buttonReport.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         buttonReport.setForeground(new java.awt.Color(255, 255, 255));
         buttonReport.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -168,7 +182,7 @@ public class windowAdmin extends javax.swing.JFrame{
         });
         PanelOptions.add(buttonReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 300, 70));
 
-        buttonMain.setBackground(new java.awt.Color(0, 87, 146));
+        buttonMain.setBackground(new java.awt.Color(39, 48, 54));
         buttonMain.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         buttonMain.setForeground(new java.awt.Color(255, 255, 255));
         buttonMain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -189,6 +203,149 @@ public class windowAdmin extends javax.swing.JFrame{
         PanelOptions.add(buttonMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 300, 70));
 
         Container.add(PanelOptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 600));
+
+        PanelProductos.setBackground(new java.awt.Color(255, 255, 255));
+        PanelProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        newProduct.setBackground(new java.awt.Color(0, 87, 146));
+        newProduct.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        newProduct.setForeground(new java.awt.Color(255, 255, 255));
+        newProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        newProduct.setText("Nuevo producto");
+        newProduct.setToolTipText("");
+        newProduct.setOpaque(true);
+        newProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newProductMouseClicked(evt);
+            }
+        });
+        PanelProductos.add(newProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 160, 40));
+
+        TitleProduct.setBackground(new java.awt.Color(255, 255, 255));
+        TitleProduct.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setBackground(new java.awt.Color(0, 87, 146));
+        jLabel10.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Nombre");
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
+        jLabel10.setOpaque(true);
+        TitleProduct.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 183, 50));
+
+        jLabel11.setBackground(new java.awt.Color(0, 87, 146));
+        jLabel11.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Código");
+        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
+        jLabel11.setOpaque(true);
+        TitleProduct.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 0, 183, 50));
+
+        jLabel12.setBackground(new java.awt.Color(0, 87, 146));
+        jLabel12.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Tipo");
+        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
+        jLabel12.setOpaque(true);
+        TitleProduct.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 0, 183, 50));
+
+        jLabel13.setBackground(new java.awt.Color(0, 87, 146));
+        jLabel13.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Opciones");
+        jLabel13.setToolTipText("");
+        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
+        jLabel13.setOpaque(true);
+        TitleProduct.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 0, 181, 50));
+
+        PanelProductos.add(TitleProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 80, 735, 50));
+
+        ScrollProduct.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        ScrollProduct.setToolTipText("");
+        ScrollProduct.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        ScrollProduct.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        ScrollProduct.setWheelScrollingEnabled(false);
+
+        ContainerProduct.setLayout(null);
+        ScrollProduct.setViewportView(ContainerProduct);
+
+        PanelProductos.add(ScrollProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 80, 750, 500));
+
+        Container.add(PanelProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 800, 600));
+
+        PanelUsuarios.setBackground(new java.awt.Color(255, 255, 255));
+        PanelUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        newUser.setBackground(new java.awt.Color(0, 87, 146));
+        newUser.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        newUser.setForeground(new java.awt.Color(255, 255, 255));
+        newUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        newUser.setText("Nuevo empleado");
+        newUser.setOpaque(true);
+        newUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newUserMouseClicked(evt);
+            }
+        });
+        PanelUsuarios.add(newUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 160, 40));
+
+        TitlesUsers.setBackground(new java.awt.Color(255, 255, 255));
+        TitlesUsers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setBackground(new java.awt.Color(0, 87, 146));
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Nombre");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
+        jLabel1.setOpaque(true);
+        TitlesUsers.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 183, 50));
+
+        jLabel2.setBackground(new java.awt.Color(0, 87, 146));
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Apellido");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
+        jLabel2.setOpaque(true);
+        TitlesUsers.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 0, 183, 50));
+
+        jLabel3.setBackground(new java.awt.Color(0, 87, 146));
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Codigo");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
+        jLabel3.setOpaque(true);
+        TitlesUsers.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 0, 183, 50));
+
+        jLabel4.setBackground(new java.awt.Color(0, 87, 146));
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Opciones");
+        jLabel4.setToolTipText("");
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
+        jLabel4.setOpaque(true);
+        TitlesUsers.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 0, 181, 50));
+
+        PanelUsuarios.add(TitlesUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 80, 735, 50));
+
+        ScrollUsers.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        ScrollUsers.setToolTipText("");
+        ScrollUsers.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        ScrollUsers.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        ScrollUsers.setWheelScrollingEnabled(false);
+
+        ContainerUsers.setLayout(null);
+        ScrollUsers.setViewportView(ContainerUsers);
+
+        PanelUsuarios.add(ScrollUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 80, 750, 500));
+
+        Container.add(PanelUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 800, 600));
 
         PanelMain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -230,81 +387,6 @@ public class windowAdmin extends javax.swing.JFrame{
 
         Container.add(PanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 800, 600));
 
-        PanelUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        PanelUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        newUser.setBackground(new java.awt.Color(0, 87, 146));
-        newUser.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        newUser.setForeground(new java.awt.Color(255, 255, 255));
-        newUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        newUser.setText("Nuevo empleado");
-        newUser.setOpaque(true);
-        newUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                newUserMouseClicked(evt);
-            }
-        });
-        PanelUsuarios.add(newUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 160, 40));
-
-        TitlesUsers.setBackground(new java.awt.Color(255, 255, 255));
-        TitlesUsers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setBackground(new java.awt.Color(0, 87, 146));
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Nombre");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
-        jLabel1.setOpaque(true);
-        TitlesUsers.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 183, 70));
-
-        jLabel2.setBackground(new java.awt.Color(0, 87, 146));
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Apellido");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
-        jLabel2.setOpaque(true);
-        TitlesUsers.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 0, 183, 70));
-
-        jLabel3.setBackground(new java.awt.Color(0, 87, 146));
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Codigo");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
-        jLabel3.setOpaque(true);
-        TitlesUsers.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 0, 183, 70));
-
-        jLabel4.setBackground(new java.awt.Color(0, 87, 146));
-        jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Opciones");
-        jLabel4.setToolTipText("");
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 87, 146), 5));
-        jLabel4.setOpaque(true);
-        TitlesUsers.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 0, 181, 70));
-
-        PanelUsuarios.add(TitlesUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 80, 735, 70));
-
-        ScrollUsers.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        ScrollUsers.setToolTipText("");
-        ScrollUsers.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        ScrollUsers.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        ScrollUsers.setWheelScrollingEnabled(false);
-
-        ContainerUsers.setLayout(null);
-        ScrollUsers.setViewportView(ContainerUsers);
-
-        PanelUsuarios.add(ScrollUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 80, 750, 500));
-
-        Container.add(PanelUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 800, 600));
-
-        PanelProductos.setBackground(new java.awt.Color(250, 207, 90));
-        PanelProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        Container.add(PanelProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 800, 600));
-
         PanelInformes.setBackground(new java.awt.Color(255, 89, 89));
         PanelInformes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         Container.add(PanelInformes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 800, 600));
@@ -321,21 +403,21 @@ public class windowAdmin extends javax.swing.JFrame{
         
         PanelUsuarios.setVisible(true);
         buttonUsers.setBackground(new Color(255,255,255));
-        buttonUsers.setForeground(new Color(0,87,146));
+        buttonUsers.setForeground(new Color(39,48,54));
         switch(ventanaVisible){
             case 0:
                 PanelMain.setVisible(false);
-                buttonMain.setBackground(new Color(0,87,146));
+                buttonMain.setBackground(new Color(39,48,54));
                 buttonMain.setForeground(new Color(255,255,255));
                 break;
             case 1:
                 PanelProductos.setVisible(false);
-                buttonProducts.setBackground(new Color(0,87,146));
+                buttonProducts.setBackground(new Color(39,48,54));
                 buttonProducts.setForeground(new Color(255,255,255));
                 break;
             case 3:
                 PanelInformes.setVisible(false);
-                buttonReport.setBackground(new Color(0,87,146));
+                buttonReport.setBackground(new Color(39,48,54));
                 buttonReport.setForeground(new Color(255,255,255));
                 break;
         }
@@ -346,22 +428,22 @@ public class windowAdmin extends javax.swing.JFrame{
         
         PanelProductos.setVisible(true);
         buttonProducts.setBackground(new Color(255,255,255));
-        buttonProducts.setForeground(new Color(0,87,146));
+        buttonProducts.setForeground(new Color(39,48,54));
         
         switch(ventanaVisible){
             case 0:
                 PanelMain.setVisible(false);
-                buttonMain.setBackground(new Color(0,87,146));
+                buttonMain.setBackground(new Color(39,48,54));
                 buttonMain.setForeground(new Color(255,255,255));
                 break;
             case 2:
                 PanelUsuarios.setVisible(false);
-                buttonUsers.setBackground(new Color(0,87,146));
+                buttonUsers.setBackground(new Color(39,48,54));
                 buttonUsers.setForeground(new Color(255,255,255));
                 break;
             case 3:
                 PanelInformes.setVisible(false);
-                buttonReport.setBackground(new Color(0,87,146));
+                buttonReport.setBackground(new Color(39,48,54));
                 buttonReport.setForeground(new Color(255,255,255));
                 break;
         }
@@ -372,22 +454,22 @@ public class windowAdmin extends javax.swing.JFrame{
         
         PanelInformes.setVisible(true);
         buttonReport.setBackground(new Color(255,255,255));
-        buttonReport.setForeground(new Color(0,87,146));
+        buttonReport.setForeground(new Color(39,48,54));
         
         switch(ventanaVisible){
             case 0:
                 PanelMain.setVisible(false);
-                buttonMain.setBackground(new Color(0,87,146));
+                buttonMain.setBackground(new Color(39,48,54));
                 buttonMain.setForeground(new Color(255,255,255));
                 break;
             case 1:
                 PanelProductos.setVisible(false);
-                buttonProducts.setBackground(new Color(0,87,146));
+                buttonProducts.setBackground(new Color(39,48,54));
                 buttonProducts.setForeground(new Color(255,255,255));
                 break;
             case 2:
                 PanelUsuarios.setVisible(false);
-                buttonUsers.setBackground(new Color(0,87,146));
+                buttonUsers.setBackground(new Color(39,48,54));
                 buttonUsers.setForeground(new Color(255,255,255));
                 break;
             
@@ -399,23 +481,23 @@ public class windowAdmin extends javax.swing.JFrame{
         
         PanelMain.setVisible(true);
         buttonMain.setBackground(new Color(255,255,255));
-        buttonMain.setForeground(new Color(0,87,146));
+        buttonMain.setForeground(new Color(39,48,54));
         
         switch(ventanaVisible){            
             case 1:
                 PanelProductos.setVisible(false);
                 buttonProducts.setBackground(new Color(255,255,255));
-                buttonProducts.setForeground(new Color(0,87,146));
+                buttonProducts.setForeground(new Color(39,48,54));
                 break;
             case 2:
                 PanelUsuarios.setVisible(false);
                 buttonUsers.setBackground(new Color(255,255,255));
-                buttonUsers.setForeground(new Color(0,87,146));
+                buttonUsers.setForeground(new Color(39,48,54));
                 break;
             case 3:
                 PanelInformes.setVisible(false);
                 buttonReport.setBackground(new Color(255,255,255));
-                buttonReport.setForeground(new Color(0,87,146));
+                buttonReport.setForeground(new Color(39,48,54));
                 break;
         }
         ventanaVisible = 0;
@@ -426,14 +508,14 @@ public class windowAdmin extends javax.swing.JFrame{
     //METODOS PARA EL DISEÑO DE LOS BOTONES
     private void buttonMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMainMouseEntered
         buttonMain.setBackground(new Color(255,255,255));
-        buttonMain.setForeground(new Color(0,87,146));
+        buttonMain.setForeground(new Color(39,48,54));
     }//GEN-LAST:event_buttonMainMouseEntered
 
     private void buttonMainMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMainMouseExited
         
         if(ventanaVisible != 0)
         {
-            buttonMain.setBackground(new Color(0,87,146));
+            buttonMain.setBackground(new Color(39,48,54));
             buttonMain.setForeground(new Color(255,255,255));
         }
         
@@ -441,14 +523,14 @@ public class windowAdmin extends javax.swing.JFrame{
 
     private void buttonUsersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonUsersMouseEntered
         buttonUsers.setBackground(new Color(255,255,255));
-        buttonUsers.setForeground(new Color(0,87,146));
+        buttonUsers.setForeground(new Color(39,48,54));
     }//GEN-LAST:event_buttonUsersMouseEntered
 
     private void buttonUsersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonUsersMouseExited
         
         if(ventanaVisible != 2)
         {
-            buttonUsers.setBackground(new Color(0,87,146));
+            buttonUsers.setBackground(new Color(39,48,54));
             buttonUsers.setForeground(new Color(255,255,255));
         }
         
@@ -456,14 +538,14 @@ public class windowAdmin extends javax.swing.JFrame{
 
     private void buttonProductsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonProductsMouseEntered
         buttonProducts.setBackground(new Color(255,255,255));
-        buttonProducts.setForeground(new Color(0,87,146));
+        buttonProducts.setForeground(new Color(39,48,54));
     }//GEN-LAST:event_buttonProductsMouseEntered
 
     private void buttonProductsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonProductsMouseExited
         
         if(ventanaVisible != 1)
         {
-            buttonProducts.setBackground(new Color(0,87,146));
+            buttonProducts.setBackground(new Color(39,48,54));
             buttonProducts.setForeground(new Color(255,255,255));
         }
         
@@ -471,14 +553,14 @@ public class windowAdmin extends javax.swing.JFrame{
 
     private void buttonReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonReportMouseEntered
         buttonReport.setBackground(new Color(255,255,255));
-        buttonReport.setForeground(new Color(0,87,146));
+        buttonReport.setForeground(new Color(39,48,54));
     }//GEN-LAST:event_buttonReportMouseEntered
 
     private void buttonReportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonReportMouseExited
         
         if(ventanaVisible != 3)
         {
-           buttonReport.setBackground(new Color(0,87,146));
+           buttonReport.setBackground(new Color(39,48,54));
            buttonReport.setForeground(new Color(255,255,255)); 
         }
         
@@ -502,6 +584,10 @@ public class windowAdmin extends javax.swing.JFrame{
         }
         
     }//GEN-LAST:event_newUserMouseClicked
+
+    private void newProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newProductMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newProductMouseClicked
     
     
     //Metodos para crear usuarios-productos
@@ -567,7 +653,7 @@ public class windowAdmin extends javax.swing.JFrame{
                 
                 if (F.getInformacion().equals("")){
                     
-                    System.out.println("Esperando");
+                    System.out.println(".");
                 }
                 else {
                     break;
@@ -660,6 +746,7 @@ public class windowAdmin extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Container;
+    private javax.swing.JPanel ContainerProduct;
     private javax.swing.JPanel ContainerUsers;
     private javax.swing.JLabel ImageUser;
     private javax.swing.JLabel InfoUser;
@@ -668,8 +755,10 @@ public class windowAdmin extends javax.swing.JFrame{
     private javax.swing.JPanel PanelOptions;
     private javax.swing.JPanel PanelProductos;
     private javax.swing.JPanel PanelUsuarios;
+    private javax.swing.JScrollPane ScrollProduct;
     private javax.swing.JScrollPane ScrollUsers;
     private javax.swing.JLabel Title;
+    private javax.swing.JPanel TitleProduct;
     private javax.swing.JPanel TitlesUsers;
     private javax.swing.JPanel User;
     private javax.swing.JLabel buttonMain;
@@ -677,6 +766,10 @@ public class windowAdmin extends javax.swing.JFrame{
     private javax.swing.JLabel buttonReport;
     private javax.swing.JLabel buttonUsers;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -686,6 +779,7 @@ public class windowAdmin extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel newProduct;
     private javax.swing.JLabel newUser;
     // End of variables declaration//GEN-END:variables
 
