@@ -1,4 +1,4 @@
-package Vista;
+package Modelo;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -14,7 +14,7 @@ public class Servidor {
    private String url= "jdbc:postgresql://localhost:5432/inventario";
    private String user="postgres"; 
    private String password= "1"; 
-   public java.sql.Statement pq; 
+   public Statement pq; 
    public ResultSet resultado;
   
    //CREACION HILO
@@ -23,12 +23,11 @@ public class Servidor {
    private int puerto=4545;
    private int maximosConectados= 4; 
   
-   public void initServer(){
-       conexBD(); 
+   public void initServer(){ 
        creacionServidor();
    }
    
-   private void conexBD(){ //conexion a base de datos 
+   public void conexBD(){ //conexion a base de datos 
     try {
            Class.forName("org.postgresql.Driver");
            Connection conexion= DriverManager.getConnection(url, user, password);
@@ -54,7 +53,7 @@ public class Servidor {
                cliente=servidorSocket.accept(); //aceptar llamado cliente
                HiloCliente hilo= new HiloCliente(cliente); //Creacion hilo cliente
                hilo.start(); //inicializacion 
-               System.out.println("Cliente conectado:"+cliente.getInetAddress().getAddress()); 
+               System.out.println("Cliente conectado:"+cliente.getInetAddress().getHostName()); 
            }
            
        } catch (IOException ex) {
@@ -70,13 +69,14 @@ public class Servidor {
         
        public HiloCliente(Socket clie){ //CONTRUCCTOR SOCKET
           this.hilocliente=clie; 
-          
+         
           try { 
                input= new DataInputStream(clie.getInputStream());
                output= new DataOutputStream(clie.getOutputStream()); 
            } catch (IOException ex) {
                Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);   
            }          
+          conexBD();
        }
                
                
@@ -86,9 +86,14 @@ public class Servidor {
                
                 while (true){  
                      String url= input.readUTF();   //LEE LOS DATOS QUE EL CLIENTE ENVIA
-                     resultado=pq.executeQuery(url); //EJECUCION DEL CODIGO SQL
+                     int val= url.indexOf(" "); //BUSCA LA PRIMERA COINCIDENCIA Y ME RETORNA SU POSICION
+                     String cadena= url.substring(0, val); // OBTENGO LA SUBCADENA, DESDE EL INICIO HASTA ANTES DEL ESPACIO   
                      
-                      while(resultado.next()){
+                    if(cadena.equals("SELECT")){ //ESTO ES PARA VERIFICAR QUE TIPO DE OPERACION SE VA A EJECUTAR CON LA BASE DE DATOS 
+                      
+                         resultado=pq.executeQuery(url); //EJECUCION DEL CODIGO SQL
+                     
+                         while(resultado.next()){
                           int col=1; 
                           String mensajeEn=new String(); //AQUI SE ALMACENARÁN LOS RESULTADOS
                           
@@ -98,7 +103,12 @@ public class Servidor {
                           }
                           
                          output.writeUTF(mensajeEn); //Envio de datos al cliente
-                     }
+                         }
+                    } else if(cadena.equals("INSERT")||cadena.equals("UPDATE")|| cadena.equals("DELETE")){
+                        
+                       int z=pq.executeUpdate(url); //ESTE ME DEVUELVE UN DIGITO
+                       System.out.println("REALIZADO");
+                    }
                 }
             } catch (IOException ex) { 
                    finalizar();
@@ -113,7 +123,7 @@ public class Servidor {
                    input.close();
                    output.close();
                    hilocliente.close();
-                   System.out.println("Cliente: "+ hilocliente.getInetAddress().getAddress()+" caido"); 
+                   System.out.println("Cliente: "+ hilocliente.getInetAddress().getHostName()+" caido"); 
                } catch (IOException ex1) {
                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex1);
                }

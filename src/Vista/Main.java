@@ -1,4 +1,5 @@
 package Vista;
+import Modelo.Servidor;
 
 public class Main {
     
