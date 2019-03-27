@@ -53,7 +53,7 @@ public class Servidor {
                cliente=servidorSocket.accept(); //aceptar llamado cliente
                HiloCliente hilo= new HiloCliente(cliente); //Creacion hilo cliente
                hilo.start(); //inicializacion 
-               System.out.println("Cliente conectado:"+cliente.getInetAddress().getHostName()); 
+               System.out.println("[Cliente conectado]:"+cliente.getInetAddress().getHostAddress()); 
            }
            
        } catch (IOException ex) {
@@ -104,10 +104,13 @@ public class Servidor {
                           
                          output.writeUTF(mensajeEn); //Envio de datos al cliente
                          }
+                         
+                       System.out.println("[Cliente]:"+cliente.getInetAddress().getHostAddress() +" realizo operacion de:" +cadena);
+                       
                     } else if(cadena.equals("INSERT")||cadena.equals("UPDATE")|| cadena.equals("DELETE")){
                         
                        int z=pq.executeUpdate(url); //ESTE ME DEVUELVE UN DIGITO
-                       System.out.println("REALIZADO");
+                       System.out.println("[Cliente]:"+cliente.getInetAddress().getHostAddress() +" realizo operacion de:" +cadena);
                     }
                 }
             } catch (IOException ex) { 
@@ -123,7 +126,7 @@ public class Servidor {
                    input.close();
                    output.close();
                    hilocliente.close();
-                   System.out.println("Cliente: "+ hilocliente.getInetAddress().getHostName()+" caido"); 
+                   System.out.println("[Cliente caido]:"+cliente.getInetAddress().getHostAddress());
                } catch (IOException ex1) {
                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex1);
                }
