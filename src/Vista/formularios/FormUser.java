@@ -1,4 +1,4 @@
-package Vista;
+package Vista.Formularios;
 
 import javax.swing.JOptionPane;
 
@@ -26,7 +26,7 @@ public class FormUser extends javax.swing.JFrame {
         TitleText = new javax.swing.JLabel();
         Apellido = new javax.swing.JTextField();
         Nombre = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        Icon = new javax.swing.JLabel();
         ApellidoTitle = new javax.swing.JLabel();
         NombreTitle = new javax.swing.JLabel();
         TipoTitle = new javax.swing.JLabel();
@@ -73,8 +73,8 @@ public class FormUser extends javax.swing.JFrame {
         Container.add(Apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 160, 30));
         Container.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sources/Usuario.png"))); // NOI18N
-        Container.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 100, -1));
+        Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sources/Usuario.png"))); // NOI18N
+        Container.add(Icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 100, -1));
 
         ApellidoTitle.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         ApellidoTitle.setText("Apellido:");
@@ -198,6 +198,7 @@ public class FormUser extends javax.swing.JFrame {
     private javax.swing.JLabel CelularTitle;
     private javax.swing.JPanel Container;
     private javax.swing.JLabel EnviarUser;
+    private javax.swing.JLabel Icon;
     private javax.swing.JTextField Nombre;
     private javax.swing.JLabel NombreTitle;
     private javax.swing.JLabel NroTitle;
@@ -212,7 +213,6 @@ public class FormUser extends javax.swing.JFrame {
     private javax.swing.JTextField Tipoid;
     private javax.swing.JPanel Title;
     private javax.swing.JLabel TitleText;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField5;
