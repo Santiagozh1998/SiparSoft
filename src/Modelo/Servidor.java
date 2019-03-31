@@ -1,4 +1,3 @@
-
 package Modelo;
 
 import java.io.DataInputStream;
@@ -11,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Servidor {
+    
     //CONEXION A BASE DE DATOS
    private String url= "jdbc:postgresql://localhost:5432/inventario";
    private String user="postgres"; 
@@ -28,24 +28,10 @@ public class Servidor {
        creacionServidor();
    }
    
-   public void conexBD(){ //conexion a base de datos 
-    try {
-           Class.forName("org.postgresql.Driver");
-           Connection conexion= DriverManager.getConnection(url, user, password);
-           pq= conexion.createStatement(); 
-           System.out.println("-------CONEXION CON BASE DE DATOS ACTVA-------");       
-           
-    } catch (ClassNotFoundException ex) {
-           Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-    }  catch (SQLException ex) {
-           Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-       }
-         
-   }
- 
    private void creacionServidor(){
        
        try { 
+           
            servidorSocket = new ServerSocket(puerto,maximosConectados);
            System.out.println("---------SERVIDOR INICIALIZADO----------"); //mensaje de confirmacion
            System.out.println("---------ESPERANDO CLIENTES----------"); //mensaje de confirmacion
@@ -67,72 +53,101 @@ public class Servidor {
        private Socket hilocliente; 
        private DataInputStream input;
        private DataOutputStream output;
+       private Connection conexion;
         
        public HiloCliente(Socket clie){ //CONTRUCCTOR SOCKET
           this.hilocliente=clie; 
          
-          try { 
+         try { 
                input= new DataInputStream(clie.getInputStream());
-               output= new DataOutputStream(clie.getOutputStream()); 
+               output= new DataOutputStream(clie.getOutputStream());
+               conexBD();
            } catch (IOException ex) {
                Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);   
-           }          
-          conexBD();
+           } 
+  
        }
-               
                
         @Override
         public void run() { //EJECUTA EL HILO, Y LOS METODOS A REALIZAR
            try {
-               
                 while (true){  
-                     String url= input.readUTF();   //LEE LOS DATOS QUE EL CLIENTE ENVIA
-                     int val= url.indexOf(" "); //BUSCA LA PRIMERA COINCIDENCIA Y ME RETORNA SU POSICION
-                     String cadena= url.substring(0, val); // OBTENGO LA SUBCADENA, DESDE EL INICIO HASTA ANTES DEL ESPACIO   
+                    
+                     String url= input.readUTF();  
+                     int val= url.indexOf(" "); 
+                     String cadena= url.substring(0, val); 
                      
-                    if(cadena.equals("SELECT")){ //ESTO ES PARA VERIFICAR QUE TIPO DE OPERACION SE VA A EJECUTAR CON LA BASE DE DATOS 
-                      
+                     if(cadena.equals("SELECT")){ //ESTO ES PARA VERIFICAR QUE TIPO DE OPERACION SE VA A EJECUTAR CON LA BASE DE DATOS 
+                         int veri =0; 
                          resultado=pq.executeQuery(url); //EJECUCION DEL CODIGO SQL
-                     
+                          
                          while(resultado.next()){
-                          int col=1; 
-                          String mensajeEn=new String(); //AQUI SE ALMACENARÁN LOS RESULTADOS
-                          
-                          while(col<=resultado.getMetaData().getColumnCount()){ //ME PERMITE CONOCER LA LONGITUD DE LAS TABLAS
-                              mensajeEn+=resultado.getString(col)+" "; //CONCATENA LOS RESULTADOS OBTENIDOS EN UN STRING
-                              col++;
-                          }
-                          
-                         output.writeUTF(mensajeEn); //Envio de datos al cliente
-                         }
+                             veri=1;  //VERIFICA SI HAY ALMENOS UNA ENTRADA AL WHILE
+                             
+                             String mensajeEn=new String(); //AQUI SE ALMACENARÁN LOS RESULTADOS
+                             int col=1; 
+                             
+                             while(col<=resultado.getMetaData().getColumnCount()){ //ME PERMITE CONOCER LA CANTIDAD DE COLUMNAS
+                                mensajeEn+=resultado.getString(col)+","; //CONCATENA LOS RESULTADOS OBTENIDOS EN UN STRING
+                                col++;
+                             }
+                             
+                             output.writeUTF(mensajeEn); //Envio de datos al cliente
+                        }
                          
-                       System.out.println("[Cliente]:"+cliente.getInetAddress().getHostAddress() +" realizo operacion de:" +cadena);
+                         if(veri==0){
+                            output.writeUTF(","); //SI NO ENTRO AL WHILE, SIGNIFICA QUE NO TIENE VALORES QUE RETORNAR   
+                         }
+                          
+                         System.out.println("[Cliente]:"+cliente.getInetAddress().getHostAddress() +" realizo operacion de:" +cadena);
                        
-                    } else if(cadena.equals("INSERT")||cadena.equals("UPDATE")|| cadena.equals("DELETE")){
+                     }else if(cadena.equals("INSERT")||cadena.equals("UPDATE")|| cadena.equals("DELETE")){
                         
                        int z=pq.executeUpdate(url); //ESTE ME DEVUELVE UN DIGITO
                        System.out.println("[Cliente]:"+cliente.getInetAddress().getHostAddress() +" realizo operacion de:" +cadena);
                     }
+                    
                 }
             } catch (IOException ex) { 
+                   
                    finalizar();
             } catch (SQLException ex) {
                    finalizar();
             }    
-       }
+     }
              
+     public void conexBD(){ //conexion a base de datos 
+        try {
+           
+             Class.forName("org.postgresql.Driver");
+             conexion=DriverManager.getConnection(url, user, password);
+             pq= conexion.createStatement(); 
              
+             System.out.println("-------CONEXION CON BASE DE DATOS ACTVA-------");   
+           
+            } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         
+   }    
+        
         public void finalizar(){ //CIERRA LAS CONECIONES CON EL CLIENTE 
             try { 
+                   conexion.close();
+                   hilocliente.close();
                    input.close();
                    output.close();
-                   hilocliente.close();
                    System.out.println("[Cliente caido]:"+cliente.getInetAddress().getHostAddress());
-               } catch (IOException ex1) {
+                   
+                } catch (IOException ex1) {
                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex1);
-               }
-         }
-     }  
+                } catch (SQLException ex) {
+                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+    }  
    
 }
 

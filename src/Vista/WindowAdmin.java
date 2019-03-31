@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class windowAdmin extends javax.swing.JFrame{
+public class WindowAdmin extends javax.swing.JFrame{
     
     private JScrollPane ScrollUser;
     private JScrollPane ScrollClient;
@@ -36,7 +36,7 @@ public class windowAdmin extends javax.swing.JFrame{
     private User usuario;
     
     
-    public windowAdmin() {
+    public WindowAdmin() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);

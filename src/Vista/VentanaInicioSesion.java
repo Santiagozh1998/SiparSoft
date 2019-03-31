@@ -1,26 +1,102 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
-/**
- *
- * @author mapam
- */
-public class VentanaInicioSesion extends javax.swing.JFrame {
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-    /**
-     * Creates new form VentanaInicioSesion
-     */
-    public VentanaInicioSesion() {
+public class VentanaInicioSesion extends javax.swing.JFrame {
+    
+    ///PARA REALIZAR LA CONEXION
+    private Socket servidor; 
+    private int puerto; 
+    private String host; 
+    private DataInputStream entrada; 
+    private DataOutputStream salida;  
+    
+    //login
+    private String user= new String(); 
+    private String password= new String(); 
+    private int val=1;
+    
+    
+    public VentanaInicioSesion(String host, int puerto) {
+        this.host= host;
+        this.puerto= puerto;
+        
         initComponents();
+        conexion(); 
+        
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
+        
+        while(val==1){
+            lecturaDatos();
+        }
+        
     }
-
+    
+    public void conexion(){
+        try {
+	     servidor= new Socket(host, puerto); //CREA EL SOCKET
+	     entrada= new DataInputStream(servidor.getInputStream());
+	     salida=new DataOutputStream(servidor.getOutputStream());
+			
+	     }catch(IOException e) {
+                        val=0; 
+			JOptionPane.showMessageDialog(null, "FALLO EN LA CONEXION CON EL SERVIDOR", "Alerta", JOptionPane.OK_OPTION);
+	     }
+    }
+    
+    public void lecturaDatos(){ 
+	 try {
+             
+	      String respuesta= entrada.readUTF(); 
+              
+              if(!respuesta.equals(",")){ //SI LA CONSULTA NO ARROJA RESULTADOS RECIBE UNA ","
+                  
+                  int i=respuesta.indexOf(","); 
+                  respuesta=respuesta.substring(0,i); //SACA LA CONTRASEÑA DE LO QUE RECIBE
+                  
+                    if(respuesta.equals(password)){
+                        activar(); //LLAMA EL METODO QUE INICIALIZA LA NUEVA VENTANA 
+                    }
+                    
+                }else{
+                   JOptionPane.showMessageDialog(null, "ERROR DE USUARIO O CONTRASEÑA");
+                   CajonContrasena.setText("");
+                }	
+              
+	     }catch(IOException e) {
+                 val=0; //finaliza la lectura de datos
+                 JOptionPane.showMessageDialog(null, "CONEXION PERDIDA");
+	     }
+    } 
+    
+     public void activar(){
+        val=0;  
+        WindowAdmin ventana= new WindowAdmin();  //activa la nueva ventana 
+        finConexion();
+    }
+     
+    public void finConexion(){
+     try {
+            
+            salida.close();
+            entrada.close();
+            servidor.close(); 
+            this.dispose();
+            
+         } catch (IOException ex) {
+            Logger.getLogger(VentanaInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +134,11 @@ public class VentanaInicioSesion extends javax.swing.JFrame {
         botonIniciarSesion.setText("Iniciar sesión");
         botonIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonIniciarSesion.setOpaque(true);
+        botonIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonIniciarSesionMouseClicked(evt);
+            }
+        });
         getContentPane().add(botonIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 120, 30));
 
         FondoInicioSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/inicio.png"))); // NOI18N
@@ -66,11 +147,26 @@ public class VentanaInicioSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIniciarSesionMouseClicked
+        // TODO add your handling code here:
+        try {
+            
+            user= CajonUsuario.getText();
+            password= String.valueOf(CajonContrasena.getPassword());
+            String envio= "SELECT contraseña FROM USUARIO WHERE codusuario="+user; 
+            salida.writeUTF(envio);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonIniciarSesionMouseClicked
+
+    
     private void CajonUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CajonUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CajonUsuarioActionPerformed
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField CajonContrasena;
     private javax.swing.JTextField CajonUsuario;
