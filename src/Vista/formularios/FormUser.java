@@ -149,8 +149,6 @@ public class FormUser extends javax.swing.JFrame {
             flag = 1;
         }
         
-        
-        
         if(flag == 0)
         {
             
@@ -174,7 +172,7 @@ public class FormUser extends javax.swing.JFrame {
         }
         else{
             
-            JOptionPane.showMessageDialog(null, "Ingrese datos permitidos", "Datos erroneos", JOptionPane.WARNING_MESSAGE);                
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados", "Datos erroneos", JOptionPane.WARNING_MESSAGE);                
         }
         
         

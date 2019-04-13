@@ -5,8 +5,10 @@ import Vista.Formularios.FormProduct;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,12 +37,25 @@ public class WindowAdmin extends javax.swing.JFrame{
     private int ventanaProduct = 0;
     private User usuario;
     
+    private Socket servidor; 
+    private int puerto; 
+    private String host; 
+    private DataInputStream entrada; 
+    private DataOutputStream salida;
+    private int val=1;
     
-    public WindowAdmin() {
+    public WindowAdmin(String host, int puerto) {
+        this.host= host;
+        this.puerto= puerto;
+        
         initComponents();
+        
+        
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
+        
+        conexion(); 
         
         PanelUsuarios.setVisible(false);
         PanelProductos.setVisible(false);
@@ -74,6 +89,7 @@ public class WindowAdmin extends javax.swing.JFrame{
             buttonUsers.setVisible(false);
             buttonReport.setVisible(false);
         }
+        
         
     }
 
@@ -564,8 +580,6 @@ public class WindowAdmin extends javax.swing.JFrame{
         ventanaVisible = 0;
     }//GEN-LAST:event_buttonMainMouseClicked
 
-    
-    
     //METODOS PARA EL DISEÑO DE LOS BOTONES
     private void buttonMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMainMouseEntered
         buttonMain.setBackground(new Color(255,255,255));
@@ -707,6 +721,35 @@ public class WindowAdmin extends javax.swing.JFrame{
         buttonBill.setForeground(new Color(39,48,54));
     }//GEN-LAST:event_buttonBillMouseEntered
     
+    
+    public void conexion(){
+        try {
+	     servidor= new Socket(host, puerto); //CREA EL SOCKET
+	     entrada= new DataInputStream(servidor.getInputStream());
+	     salida=new DataOutputStream(servidor.getOutputStream());
+	     
+             while(val==1){
+              lecturaDatos();
+             }
+	     }catch(IOException e) {
+                val=0; 
+		JOptionPane.showMessageDialog(null, "FALLO EN LA CONEXION CON EL SERVIDOR", "Alerta", JOptionPane.OK_OPTION);
+	     }
+    }
+    
+    public void lecturaDatos(){  //falta terminar
+	 try {
+             
+	      String respuesta= entrada.readUTF(); 
+              if(!respuesta.equals(",")){ //SI LA CONSULTA NO ARROJA RESULTADOS RECIBE UNA ","
+                  
+              }	
+              
+	     }catch(IOException e) {
+                 val=0; //finaliza la lectura de datos
+                 JOptionPane.showMessageDialog(null, "CONEXION PERDIDA");
+	     }
+    }
     
     //Metodos para crear usuarios-productos
     private void createNewUser(String info) {

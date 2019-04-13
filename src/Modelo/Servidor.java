@@ -8,8 +8,12 @@ import java.net.Socket;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class Servidor {
+public class Servidor{
+     
     
     //CONEXION A BASE DE DATOS
    private String url= "jdbc:postgresql://localhost:5432/inventario";
@@ -28,7 +32,7 @@ public class Servidor {
        creacionServidor();
    }
    
-   private void creacionServidor(){
+   private void creacionServidor(){  
        
        try { 
            

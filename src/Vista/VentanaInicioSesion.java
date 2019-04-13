@@ -17,7 +17,7 @@ public class VentanaInicioSesion extends javax.swing.JFrame {
     private DataInputStream entrada; 
     private DataOutputStream salida;  
     
-    //login
+    //LOGIN DEL APLICATIVO 
     private String user= new String(); 
     private String password= new String(); 
     private int val=1;
@@ -79,8 +79,9 @@ public class VentanaInicioSesion extends javax.swing.JFrame {
     
      public void activar(){
         val=0;  
-        WindowAdmin ventana= new WindowAdmin();  //activa la nueva ventana 
         finConexion();
+        WindowAdmin ventana = new WindowAdmin(this.host, this.puerto);  //activa la nueva ventana 
+        
     }
      
     public void finConexion(){
@@ -153,7 +154,7 @@ public class VentanaInicioSesion extends javax.swing.JFrame {
             
             user= CajonUsuario.getText();
             password= String.valueOf(CajonContrasena.getPassword());
-            String envio= "SELECT contraseña FROM USUARIO WHERE codusuario="+user; 
+            String envio= "SELECT contrasenia FROM LOGIN WHERE codUsuario="+user; 
             salida.writeUTF(envio);
             
         } catch (IOException ex) {
