@@ -30,24 +30,17 @@ public class Server extends javax.swing.JFrame {
    private Socket cliente; 
    private int puerto=4545;
    private int maximosConectados= 4;  
-    
    
    public Server() {
         initComponents();
-        //SI DEO ESTO ASI, FUNCIONA MELO
-        user="postgres";
-        password="1";
-        
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(true); 
         
-       //SI DEJO ESTOA AQUI FUNCIONA MELO
         creacionServidor();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -94,7 +87,7 @@ public class Server extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +99,7 @@ public class Server extends javax.swing.JFrame {
         LabelUsuario1.setForeground(new java.awt.Color(255, 255, 255));
         LabelUsuario1.setText("USUARIO BD");
 
-        BotonInicio.setText("INICIAR SERVIDOR");
+        BotonInicio.setText("INICIAR CONEXION");
         BotonInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonInicioMouseClicked(evt);
@@ -118,27 +111,27 @@ public class Server extends javax.swing.JFrame {
         PanelPrincipalLayout.setHorizontalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LabelUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PanelPrincipalLayout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(PanelPrincipalLayout.createSequentialGroup()
                                         .addComponent(LabelContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(CajonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CajonContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BotonInicio))))))
-                    .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                                            .addComponent(CajonContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                                                .addComponent(CajonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(BotonInicio)))))))
+                        .addGap(2, 2, 2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,27 +140,22 @@ public class Server extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPrincipalLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LabelUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CajonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(CajonContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPrincipalLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(LabelContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addComponent(LabelUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CajonUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(LabelContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CajonContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))
                     .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(27, 27, 27)
                         .addComponent(BotonInicio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        LabelContrasenia.getAccessibleContext().setAccessibleName("PASSWORD BD");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,10 +165,8 @@ public class Server extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        getAccessibleContext().setAccessibleName("SERVIDOR");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -190,17 +176,19 @@ public class Server extends javax.swing.JFrame {
       
       //AL DAR CLICK SOBRE EL BOTON FALLA Y DEJA CONGELA TODO      
         if(CajonUsuario.getText().equals("") || CajonContrasenia.getPassword().equals("")){
+            
             JOptionPane.showMessageDialog(this, "DIGITE LOS CAMPOS SOLICITADOS PARA REALIZAR CONEXION A BASE DE DATOS");
         }else{
+            
             user=CajonUsuario.getText(); 
             password=String.valueOf(CajonContrasenia.getPassword()); 
             CajonContrasenia.setText("");
-            //descomentar para ver su funcionamiento
-            //creacionServidor();
+            validarConexionBD(); 
+            
         }
     }//GEN-LAST:event_BotonInicioMouseClicked
 
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonInicio;
     private javax.swing.JPasswordField CajonContrasenia;
@@ -213,33 +201,50 @@ public class Server extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
+public void validarConexionBD(){ 
+    try {
+             Class.forName("org.postgresql.Driver");
+             Connection conexion=DriverManager.getConnection(url, user, password);
+             mostrarMensaje("\tCONEXION CON BASE DE DATOS ACTIVA");
+             mostrarMensaje("\t\tESPERANDO CLIENTES");
+             
+             BotonInicio.setEnabled(false);
+             conexion.close();
+             
+            } catch (ClassNotFoundException ex) {
+                mostrarMensaje("FALLO CONEXION BASE DE DATOS INGRESE DATOS DE  NUEVO");
+            } catch (SQLException ex) {
+                mostrarMensaje("FALLO CONEXION BASE DE DATOS INGRESE DATOS DE  NUEVO"); 
+            }
+    
+  }
+    
 private void creacionServidor(){  
        
        try { 
-           
-           servidorSocket = new ServerSocket(puerto,maximosConectados);
-           mostrarMensaje("\t\tSERVIDOR INICIALIZADO");
-           mostrarMensaje("  IP SERVIDOR PARA CONEXION REMOTA: "+InetAddress.getLocalHost().getHostAddress());
-           mostrarMensaje("\t\tESPERANDO CLIENTES");
-           
-          while(true){
+            servidorSocket = new ServerSocket(puerto,maximosConectados);
+            mostrarMensaje("\t\tSERVIDOR INICIALIZADO");
+            mostrarMensaje("  IP SERVIDOR PARA CONEXION REMOTA: "+InetAddress.getLocalHost().getHostAddress()+"\n");
+            mostrarMensaje("\tESPERANDO CONEXION A BASE DE DATOS");
+            JOptionPane.showMessageDialog(this, "DEBE INGRESAR LOS DATOS SOLICITADOS PARA CONEXION A \n "
+                   + "BASE DE DATOS Y PODER ATENDER CLIENTES");
+          
+            while(true){
                cliente=servidorSocket.accept(); //aceptar llamado cliente
                HiloCliente hilo= new HiloCliente(cliente); //Creacion hilo cliente
                hilo.start(); //inicializacion 
                mostrarMensaje("[Cliente conectado]:"+cliente.getInetAddress().getHostAddress()); 
-           }
+            }
            
        } catch (IOException ex) {
-           mostrarMensaje("\tFALLO CONEXION USUARIOS"); 
+           mostrarMensaje("\t\tFALLO CONEXION USUARIOS"); 
            
        }
    }
 
-
 public void mostrarMensaje(String mensaje){
     Escritorio.append(mensaje+"\n"); 
 }
-
 
 private class HiloCliente extends Thread { //CLASE INTERNA DONDE SE CREAN LOS HILOS
        private Socket hilocliente; 
@@ -263,7 +268,7 @@ private class HiloCliente extends Thread { //CLASE INTERNA DONDE SE CREAN LOS HI
            } 
   
        }
-               
+       
         @Override
         public void run() { //EJECUTA EL HILO, Y LOS METODOS A REALIZAR
            try {
@@ -312,15 +317,14 @@ private class HiloCliente extends Thread { //CLASE INTERNA DONDE SE CREAN LOS HI
             }    
      }
              
-     public void conexBD(){ //conexion a base de datos 
+        public void conexBD(){ //conexion a base de datos 
         try {
            
              Class.forName("org.postgresql.Driver");
              conexion=DriverManager.getConnection(url, user, password);
              pq= conexion.createStatement(); 
              
-             mostrarMensaje("\n\tCONEXION CON BASE DE DATOS ACTVA");   
-             
+             mostrarMensaje("\n\tCONEXION CLIENTE CON BASE DE DATOS ACTVA"); 
              
             } catch (ClassNotFoundException ex) {
                 mostrarMensaje("\tFALLO CONEXION BASE DE DATOS INGRESE USUARIO Y CONTRASEÑA DE  NUEVO");
@@ -345,6 +349,5 @@ private class HiloCliente extends Thread { //CLASE INTERNA DONDE SE CREAN LOS HI
                 }
         }
     }  
-
 
 }
