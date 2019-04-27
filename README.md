@@ -1,4 +1,18 @@
 # SiparSoft
+
+# Para iniciar la aplicación abriendo desde carpeta compartida:
+1. Abrir pgAdminIII
+2. Crear una base de datos que se llame 'inventario' y presionar createScript
+3. Copiar y pegar lo que está en inventario.sql
+4. Abrir el ejecutable del servidor
+5. Digitar usuario y contraseña que tenga predeterminado en su computador
+en nuestro caso es usuario: postgres, contraseña: 1234
+6. Iniciar conexión
+7. Abrir el ejecutable del cliente
+8. Digitar 1234 en usuario y 1234 en contraseña, iniciar sesión
+9. Tiene a la mano el menú con opciones abierto para navegar
+
+# Para inciar aplicación descargando de github
 ## Descargar el proyecto en su computador
 ```
 git clone https://github.com/Santiagozh1998/SiparSoft
